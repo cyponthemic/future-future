@@ -1,3 +1,5 @@
-body {
-  background: red;
-}
+@import "generic/font-face";
+@import "generic/base";
+
+@import "layout/header";
+@import "layout/container";
