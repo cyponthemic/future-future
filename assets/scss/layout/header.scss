@@ -21,11 +21,13 @@
 }
 
 .header {
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 2em 0;
+  cursor: default;
 }
 
 .footer {
@@ -34,6 +36,7 @@
   left: 0;
   width: 100%;
   padding: 2em 2em;
+  cursor: default;
 
   @media only screen and (max-width : 768px) {
     padding: 2em 0;

@@ -7,7 +7,11 @@
         <li><a href="">Instagram</a></li>
       </ul>
     </div>
-    <div>
+    <div class="slideshow">
+      <div class="slideshow-control slideshow-control--left">
+      </div>
+      <div class="slideshow-control slideshow-control--right">
+      </div>
       <img class="main-logo" v-show="!loading" src="~/assets/images/FutureFuture_Logo_White.svg"/>
       <img class="main-logo" v-show="loading" src="~/assets/images/FutureFuture_Logo_Black.svg"/>
     </div>
@@ -48,6 +52,7 @@ export default {
 
 .main-logo {
   position: absolute;
+  cursor: none;
   top: 50%;
   left: 50%;
   height: 60vh;

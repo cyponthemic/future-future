@@ -6,22 +6,28 @@
   text-align: center;
   background: black;
 
+  animation-name: flash;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
   &--loading {
-    animation-name: example;
+    animation-name: pattern;
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-fill-mode: forwards;
   }
 }
 
-@keyframes example {
-    from {
-      background: url(~/assets/images/bg.png);
-    }
-    to {
-      background: url(~/assets/images/bg2.png);
-    }
-    0%   { background: url(~/assets/images/bg.png) }
+@keyframes flash {
+     0%   { background: white; }
+     50%  { background: white; }
+     50.01%  { background: black; }
+     100%  { background: black; }
+}
+
+@keyframes pattern {
+     0%   { background: url(~/assets/images/bg.png) }
      50%  { background: url(~/assets/images/bg.png) }
      50.01%  {background: url(~/assets/images/bg2.png) }
      100%  { background: url(~/assets/images/bg2.png) }
