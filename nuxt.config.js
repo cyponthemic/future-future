@@ -19,6 +19,8 @@ module.exports = {
   ],
   plugins: [
     { src: '~/plugins/carousel', ssr: false },
+    { src: '~/plugins/bus', ssr: false },
+    { src: '~/plugins/lazy', ssr: false },
     { src: '~/plugins/touch', ssr: false }
   ],
   /*
@@ -45,14 +47,14 @@ module.exports = {
   }
 }
 
-/* nuxt.config.js */
-// only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
-const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
-  router: {
-    base: '/future-future/'
-  }
-} : {}
-
-module.exports = {
-  ...routerBase
-}
+// /* nuxt.config.js */
+// // only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
+// const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+//   router: {
+//     base: '/future-future/'
+//   }
+// } : {}
+//
+// module.exports = {
+//   ...routerBase
+// }

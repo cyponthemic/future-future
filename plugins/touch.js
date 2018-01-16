@@ -1,6 +1,4 @@
-import Vue from 'vue'
-import Vue2TouchEvents from 'vue2-touch-events'
-
-Vue.use(Vue2TouchEvents)
-
-window.Bus = new Vue({})
+// import Vue from 'vue'
+// import Vue2TouchEvents from 'vue2-touch-events'
+//
+// Vue.use(Vue2TouchEvents)

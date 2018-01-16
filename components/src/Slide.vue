@@ -9,8 +9,16 @@
     name: "slide",
     data() {
       return {
-        width: null,
+        width: null
       }
+    },
+    methods: {
+      callback() {
+        console.log('image loaded', event.path["0"].src)
+      }
+    },
+    mounted () {
+      this.$Lazyload.$once('loaded', this.callback);
     }
   }
 </script>

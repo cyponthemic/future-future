@@ -7,6 +7,7 @@
     </div>
     <div class="VueCarousel-wrapper">
       <div
+        id="wrapper"
         class="VueCarousel-inner"
         v-bind:style="`
           transform: translateX(${currentOffset}px);
@@ -55,7 +56,8 @@
         dragOffset: 0,
         dragStartX: 0,
         mousedown: false,
-        slideCount: 0
+        slideCount: 0,
+        cloned: false
       }
     },
     mixins: [
@@ -288,6 +290,30 @@
       },
     },
     methods: {
+      duplicate () {
+
+        if(this.cloned) {
+          return false
+        }
+
+        const children = this.$children.map(function(item){
+          item.$el.className += ' cloned';
+          return item.$el.outerHTML
+        })
+        const wrapper = document.getElementById('wrapper')
+
+        for (var i = 0; i < children.length; i++) {
+          this.$children[0].$el.insertAdjacentHTML('beforebegin', children[i])
+          this.$children[0].$el.insertAdjacentHTML('beforebegin', children[i])
+          this.$children[0].$el.insertAdjacentHTML('beforebegin', children[i])
+          this.$children[children.length-1].$el.insertAdjacentHTML('afterend', children[i])
+          this.$children[children.length-1].$el.insertAdjacentHTML('afterend', children[i])
+          this.$children[children.length-1].$el.insertAdjacentHTML('afterend', children[i])
+        }
+
+        // this.slideCount = this.slideCount * 3;
+        this.cloned = true;
+      },
        /**
        * @return {Number} The index of the next page
        * */
@@ -378,7 +404,7 @@
                  slot.tag
               && slot.tag.indexOf("slide") > -1
           ).length
-        ) || 0
+        ) * 7 || 0
       },
       /**
        * Set the current page to a specific value
@@ -437,6 +463,7 @@
        */
       computeCarouselWidth() {
         this.getSlideCount()
+        this.duplicate()
         this.getBrowserWidth()
         this.getCarouselWidth()
         this.setCurrentPageInBounds()

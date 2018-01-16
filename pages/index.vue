@@ -1,6 +1,6 @@
 <template>
   <section class="container" :class="{'container--loading' : loading}">
-    <div class="header" v-show="!loading">
+    <div class="header" v-if="!loading">
       <ul class="nav">
         <li><a href="">Reservation</a></li>
         <li><a href="">Menu</a></li>
@@ -8,7 +8,7 @@
       </ul>
     </div>
     <Slideshow></Slideshow>
-    <div class="footer" v-show="!loading">
+    <div class="footer" v-if="!loading">
       <ul class="nav">
         <li class="tel"><a href="">T 9812 3456</a></li>
         <li class="address"><a href="">192 Swan Street, Richmond VIC 3121</a></li>

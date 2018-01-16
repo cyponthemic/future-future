@@ -6,7 +6,7 @@
   </div>
   <Carousel :perPage="1" ref="carousel" :loop="true">
     <Slide>
-      <img class="ff-slideshow__image" :src="require('~/assets/images/carousel/carousel-1.jpg')" />
+      <img class="ff-slideshow__image" :src="require('~/assets/images/carousel/carousel-1.jpg')"/>
     </Slide>
     <Slide>
       <img class="ff-slideshow__image" :src="require('~/assets/images/carousel/carousel-2.jpg')" />
@@ -37,6 +37,9 @@ export default {
 			Slide
   },
   methods: {
+    handler () {
+      console.log('image loaded')
+    },
     pagePrev () {
       this.$refs.carousel.advancePage('backward')
     },
@@ -56,6 +59,7 @@ export default {
   },
   mounted () {
     window.Bus.$on('swipe', this.pageChange)
+    console.log('loaded')
   }
 }
 </script>
