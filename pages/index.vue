@@ -7,14 +7,7 @@
         <li><a href="">Instagram</a></li>
       </ul>
     </div>
-    <div class="slideshow">
-      <div class="slideshow-control slideshow-control--left">
-      </div>
-      <div class="slideshow-control slideshow-control--right">
-      </div>
-      <img class="main-logo" v-show="!loading" src="~/assets/images/FutureFuture_Logo_White.svg"/>
-      <img class="main-logo" v-show="loading" src="~/assets/images/FutureFuture_Logo_Black.svg"/>
-    </div>
+    <Slideshow></Slideshow>
     <div class="footer" v-show="!loading">
       <ul class="nav">
         <li class="tel"><a href="">T 9812 3456</a></li>
@@ -26,11 +19,11 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Slideshow from '~/components/Slideshow.vue'
 
 export default {
   components: {
-    Logo
+    Slideshow
   },
   data () {
     return {
@@ -40,6 +33,9 @@ export default {
   methods: {
     endLoading () {
       this.loading = false
+    },
+    swipeHandler (event) {
+      window.Bus.$emit('swipe', event)
     }
   },
   mounted () {
@@ -50,13 +46,5 @@ export default {
 
 <style>
 
-.main-logo {
-  position: absolute;
-  cursor: none;
-  top: 50%;
-  left: 50%;
-  height: 60vh;
-  transform: translate(-50%,-50%);
-}
 
 </style>

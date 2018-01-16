@@ -1,0 +1,22 @@
+.main-logo {
+  position: fixed;
+  cursor: none;
+  top: 50%;
+  left: 50%;
+  height: 60vh;
+  width: 100%;
+  transform: translate(-50%,-50%);
+  color: #fff;
+  z-index: 5;
+
+  svg {
+        height: 100%;
+  }
+  .container--loading & {
+    color: #000;
+  }
+}
+
+.main-logo__glitch  {
+  //@include svgGlitch("example-four", 20, white, black, red, red, 100, 100, 200, 175);
+}

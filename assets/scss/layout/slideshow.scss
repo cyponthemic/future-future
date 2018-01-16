@@ -1,20 +1,56 @@
-.slideshow {
-  width: 100%;
+.ff-slideshow {
+  position: fixed;
+  z-index: 0;
+  width: 100vw;
   height: 100vh;
-  display: flex;
+
+  &:after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .65) 10%, transparent 100%);
+    width: 100%;
+    height: 130px;
+    z-index: 1;
+  }
+  &:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .65) 10%, transparent 100%);
+    width: 100%;
+    height: 130px;
+    z-index: 1;
+  }
+}
+
+.ff-slideshow__image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
 }
 
 .slideshow-control {
-  content: '';
-  flex: 1;
-  width: 100%;
-  height: 100%;
+  display: none;
+  @media (hover: hover) {
+    display: block;
+    position: absolute;
+    content: '';
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
 
-  &--left {
-    cursor: url('~/assets/images/FutureFuture_Cursor_Arrow_Left.png'), auto ;
-  }
+    &--left {
+      left: 0;
+      cursor: url('~/assets/images/FutureFuture_Cursor_Arrow_Left.png'), auto ;
+    }
 
-  &--right {
-    cursor: url('~/assets/images/FutureFuture_Cursor_Arrow_Right.png'), auto ;
+    &--right {
+      right: 0;
+      cursor: url('~/assets/images/FutureFuture_Cursor_Arrow_Right.png'), auto ;
+    }
   }
 }

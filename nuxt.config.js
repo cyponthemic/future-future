@@ -16,6 +16,10 @@ module.exports = {
   css: [
     '@/assets/scss/style.scss'
   ],
+  plugins: [
+    { src: '~/plugins/carousel', ssr: false },
+    { src: '~/plugins/touch', ssr: false }
+  ],
   /*
   ** Customize the progress bar color
   */
@@ -32,7 +36,7 @@ module.exports = {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
+          // loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
       }
