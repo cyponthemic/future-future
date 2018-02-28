@@ -1,20 +1,26 @@
 <template>
 <div class="ff-slideshow">
+  <div class="main-logo">
+    <svg class="icon">
+      <use xlink:href="#future-future-logo"></use>
+    </svg>
+  </div>
   <div class="slideshow-control slideshow-control--left" @click="pagePrev">
   </div>
   <div class="slideshow-control slideshow-control--right" @click="pageNext">
   </div>
-  <Carousel :perPage="1" ref="carousel" :loop="true">
-    <Slide>
-      <img class="ff-slideshow__image" :src="require('~/assets/images/carousel/carousel-1.jpg')"/>
-    </Slide>
-    <Slide>
-      <img class="ff-slideshow__image" :src="require('~/assets/images/carousel/carousel-2.jpg')" />
-    </Slide>
-    <Slide>
-      <img class="ff-slideshow__image" :src="require('~/assets/images/carousel/carousel-3.jpg')" />
-    </Slide>
-  </Carousel>
+  <slick ref="slick" :options="slickOptions">
+    <div>
+      <img class="ff-slideshow__image" :data-lazy="require('~/assets/images/carousel/carousel-1.jpg')"/>
+    </div>
+    <div>
+      <img class="ff-slideshow__image" :data-lazy="require('~/assets/images/carousel/carousel-2.jpg')" />
+    </div>
+    <div>
+      <img class="ff-slideshow__image" :data-lazy="require('~/assets/images/carousel/carousel-3.jpg')" />
+    </div>
+  </slick>
+
 </div>
 </template>
 
@@ -23,28 +29,33 @@
 </style>
 
 <script>
-import { Carousel, Slide } from './src'
-
+import $ from 'jquery';
 export default {
   name: 'Slideshow',
+  data () {
+    return {
+      ready: false,
+      slickOptions: {
+        slidesToShow: 1,
+        lazyLoad: 'anticipated',
+        slidesToScroll: 1
+      }
+    }
+  },
   computed: {
     href () {
       return `#${this.type}`
     }
-  },
-  components: {
-			Carousel,
-			Slide
   },
   methods: {
     handler () {
       console.log('image loaded')
     },
     pagePrev () {
-      this.$refs.carousel.advancePage('backward')
+      this.$refs.slick.prev();
     },
     pageNext () {
-      this.$refs.carousel.advancePage()
+      this.$refs.slick.next();
     },
     pageChange (direction) {
       if (direction === 'right') {
@@ -55,11 +66,22 @@ export default {
         this.pagePrev()
         console.log('left')
       }
+    },
+    moveLogo() {
+      const el = this.$el;
+      const draggable = $(this.$el).find('.slick-list.draggable');
+      const logo = $(el).find('.main-logo');
+      $(logo).detach().appendTo(draggable);
+    },
+    slideShowReady() {
+      console.log('ready');
+      this.ready = true;
+      this.moveLogo();
+      this.$emit('ready', []);
     }
   },
   mounted () {
-    window.Bus.$on('swipe', this.pageChange)
-    console.log('loaded')
+    this.$refs.slick.$once('lazyLoaded', this.slideShowReady);
   }
 }
 </script>

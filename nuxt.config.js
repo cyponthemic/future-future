@@ -21,6 +21,7 @@ module.exports = {
     { src: '~/plugins/carousel', ssr: false },
     { src: '~/plugins/bus', ssr: false },
     { src: '~/plugins/lazy', ssr: false },
+    { src: '~/plugins/slick', ssr: false },
     { src: '~/plugins/touch', ssr: false }
   ],
   /*

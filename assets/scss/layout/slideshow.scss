@@ -24,6 +24,17 @@
     height: 130px;
     z-index: 1;
   }
+
+  .container--loading &:after,
+  .container--loading &:before {
+    opacity: 0;
+  }
+}
+
+.slick-slider {
+  .container--loading & {
+    opacity: 0;
+  }
 }
 
 .ff-slideshow__image {
@@ -52,5 +63,13 @@
       right: 0;
       cursor: url('~/assets/images/FutureFuture_Cursor_Arrow_Right.png'), auto ;
     }
+
+    .container--loading & {
+      display: none;
+    }
   }
+}
+
+.slick-arrow {
+  display: none !important;
 }
